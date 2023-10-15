@@ -13,4 +13,23 @@ defmodule LightsOutGameWeb.Board do
 
     {:ok, assign(socket, grid: grid)}
   end
+
+  def handle_event("toggle", %{"x" => strX, "y" => strY}, socket) do
+    grid = socket.assigns.grid
+
+    # parse inputs to integers
+    grid_x = String.to_integer(strX)
+    grid_y = String.to_integer(strY)
+
+    IO.inspect("x: #{grid_x}, y: #{grid_y}")
+
+    # flip grid button color
+    updated_grid = Map.put(grid, {grid_x, grid_y}, !grid[{grid_x, grid_y}])
+
+    IO.inspect("reversed tile: #{!grid[{grid_x, grid_y}]}")
+    IO.inspect(updated_grid, label: "updated grid")
+
+    # reassign updated socket
+    {:noreply, assign(socket, grid: updated_grid)}
+  end
 end
