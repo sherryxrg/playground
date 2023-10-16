@@ -4,5 +4,5 @@
 
 /* This file is for your main application CSS */
 button[data-on=true] {
-    background-color: theme('colors.blue.500');
+    background-color: theme('colors.red.400');
 }
